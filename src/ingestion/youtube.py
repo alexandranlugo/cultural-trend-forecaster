@@ -9,12 +9,10 @@ load_dotenv()
 API_KEY = os.getenv("YOUTUBE_API_KEY")
 BASE_URL = "https://www.googleapis.com/youtube/v3"
 
-SEED_ARTISTS = [
-    "Chappell Roan", "Sabrina Carpenter", "Doechii",
-    "Benson Boone", "Gracie Abrams", "Teddy Swims",
-    "Noah Kahan", "Rema", "Ice Spice", "Tyla",
-    "Tinashe", "Mk.gee", "Clairo", "FKA Twigs", "Ethel Cain"
-]
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from src.features.artist_list import ARTISTS as SEED_ARTISTS
 
 def search_artist_videos(artist_name, max_results=10):
     published_after = (datetime.now(timezone.utc) - timedelta(days=90)).strftime("%Y-%m-%dT%H:%M:%SZ")

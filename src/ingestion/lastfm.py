@@ -9,12 +9,10 @@ load_dotenv()
 API_KEY = os.getenv("LASTFM_API_KEY")
 BASE_URL = "https://ws.audioscrobbler.com/2.0/"
 
-SEED_ARTISTS = [
-    "Chappell Roan", "Sabrina Carpenter", "Doechii",
-    "Benson Boone", "Gracie Abrams", "Teddy Swims",
-    "Noah Kahan", "Rema", "Ice Spice", "Tyla",
-    "Tinashe", "Mk.gee", "Clairo", "FKA Twigs", "Ethel Cain"
-]
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from src.features.artist_list import ARTISTS as SEED_ARTISTS
 
 def get_artist_info(artist_name):
     params = {
